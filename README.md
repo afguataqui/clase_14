@@ -40,7 +40,7 @@ Después de descargar o clonar el repositorio de la clase, usted debe abrir el a
 
 Ahora puedes ir a la carpeta **codes** y abrir el script **Clase 14.R** para replicar la clase.
 
-![](help/figures/Yeah.gif)
+![](help/run_class.gif)
 
 ## 4. Notas
 * Los vídeos de la clase se encuentran [aquí](https://www.dropbox.com/sh/071ty8qkp0i5ep2/AACWN8e7s0CW8e98bxpJy1K4a?dl=0). 
