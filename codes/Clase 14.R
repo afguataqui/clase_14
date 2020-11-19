@@ -5,12 +5,17 @@
 #--------------------------#
 # 0. Configuración inicial #
 #--------------------------#
-
-#### 0.1. Limpiar la consola, el entorno y fijar directorio de trabajo
-cat('\f')
+#Eliminar Enviroment
 rm(list=ls())
+
+#Limpiar la consola
+cat("\f")
+#Cual es mi directorio de trabajo
+getwd()
+#Fijar directorio de trabajo
+setwd("~/Desktop/R/Scripts/Clase_14 fork/")
+#### 0.1. Limpiar la consola, el entorno y fijar directorio de trabajo
 options('scipen'=100, 'digits'=4) # Forzar a R a no usar e+
-setwd('~/Dropbox/teaching/Taller de R/GitHub/Clases/Clase 14') # Cambiar este directorio
 getwd()
 
 #### 0.2. Instalar las librerias que vamos a usar en la clase de hoy
@@ -40,6 +45,8 @@ browseURL(url = 'https://es.wikipedia.org/wiki/Organización_para_la_Cooperació
 "read_html lee el HTML de la pagina y lo convierte en un objeto del tipo 'xml_document' y 'xml_node'"
 myurl = "https://es.wikipedia.org/wiki/Organización_para_la_Cooperación_y_el_Desarrollo_Económicos"
 myhtml = read_html(myurl)
+#Forma directa de crer objeto
+prueba= read_html("https://es.wikipedia.org/wiki/Organización_para_la_Cooperación_y_el_Desarrollo_Económicos")
 class(myhtml)
 
 ### 4.3. Usando el xpath
@@ -51,6 +58,10 @@ myhtml %>% html_nodes(xpath = '//*[@id="mw-content-text"]/div/p[1]') %>% class()
 
 texto = myhtml %>% html_nodes(xpath = '//*[@id="mw-content-text"]/div/p[1]') %>% html_text() # Convertir en texto
 texto
+
+##Ejemplo propio xpath
+myhtml %>% html_nodes(xpath = '//*[@id="mw-content-text"]/div[1]/ul[1]')
+Ej1=myhtml %>% html_nodes(xpath = '//*[@id="mw-content-text"]/div[1]/ul[1]') %>% html_text()
 
 ### 4.3.2. Usando los atributos del elemento
 myhtml %>% html_nodes(css = ".toctext") %>% html_text() # Extraemos los subtitulos de la pagina
@@ -75,7 +86,7 @@ link = myhtml %>% html_nodes(xpath = '//*[@id="mw-content-text"]/div[1]/div[10]'
 link
 
 link = html_nodes(link,"a") # Extraer elementos que contienen un link (los que tienen la etiqueta a)
-
+link %>% length()
 
 link = html_attr(link,'href') %>% as.data.frame() %>% setNames("link") # Extraer solo el link (atributo ref del elemento)
 
@@ -127,7 +138,7 @@ df_documentos = data.frame(titulo = rep(NA,nrow(link)),
                             abstrac = rep(NA,nrow(link)))
 
 "hagamos el loop"
-for (i in 42:52){
+for (i in 1:52){
     
     "definiendo url"
     url_i = link[i,1]
